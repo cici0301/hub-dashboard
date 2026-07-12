@@ -66,7 +66,7 @@ var _chartReady=false,_chartMetrics=null;
   tryLoad(0);
 })();
 
-var D = {"total": {"submitted": 457, "confirmed": 57, "client": 87650, "profit": 25925, "profitRate": 30}, "projects": [{"name": "PolyBuzz", "submitted": 285, "confirmed": 47, "client": 66550, "profit": 20330, "url": "https://cici0301.github.io/polybuzz-dashboard/"}, {"name": "Gauth \u5317\u7f8e", "submitted": 77, "confirmed": 7, "client": 15100, "profit": 3939, "url": "https://cici0301.github.io/gauth-dashboard/"}, {"name": "Xteink \u7f8e\u56fd", "submitted": 95, "confirmed": 3, "client": 6000, "profit": 1656, "url": "https://cici0301.github.io/xteink-dashboard/"}], "monthly": [{"month": "2026-05", "poly": 2, "gauth": 0, "xteink": 0, "total": 2}, {"month": "2026-06", "poly": 13, "gauth": 67, "xteink": 52, "total": 132}, {"month": "2026-07", "poly": 9, "gauth": 11, "xteink": 44, "total": 64}]};
+var D = {"total": {"submitted": 457, "confirmed": 57, "client": 87650, "profit": 25925, "profitRate": 30}, "projects": [{"name": "PolyBuzz", "submitted": 285, "confirmed": 47, "client": 66550, "profit": 20330, "url": "https://cici0301.github.io/polybuzz-dashboard/"}, {"name": "Gauth \u5317\u7f8e", "submitted": 77, "confirmed": 7, "client": 15100, "profit": 3939, "url": "https://cici0301.github.io/gauth-dashboard/"}, {"name": "Xteink \u7f8e\u56fd", "submitted": 95, "confirmed": 3, "client": 6000, "profit": 1656, "url": "https://cici0301.github.io/xteink-dashboard/"}], "monthly": [{"month": "2026-05", "poly": 2500, "gauth": 0, "xteink": 0}, {"month": "2026-06", "poly": 164969, "gauth": 67, "xteink": 52}, {"month": "2026-07", "poly": 26100, "gauth": 11, "xteink": 44}]};
 
 // KPIs
 document.getElementById('k0').textContent = D.total.submitted;
@@ -98,19 +98,23 @@ function renderCharts(){
     {label:'利润',data:D.projects.map(function(p){return p.profit}),backgroundColor:'#59a14f',borderRadius:5}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,ticks:{callback:function(v){return v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v}},grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}}});
 
-  // Monthly charts
   if(D.monthly && D.monthly.length>0){
     var months=D.monthly.map(function(m){return m.month.substring(5)});
+    var polyProfits=D.monthly.map(function(m){return m.poly});
+    var gauthProfits=D.monthly.map(function(m){return m.gauth});
+    var xtProfits=D.monthly.map(function(m){return m.xteink});
+    
     new Chart(document.getElementById('chartMonthBar'),{type:'bar',data:{labels:months,datasets:[
-      {label:'PolyBuzz',data:D.monthly.map(function(m){return m.poly}),backgroundColor:'#4e79a7',borderRadius:3},
-      {label:'Gauth',data:D.monthly.map(function(m){return m.gauth}),backgroundColor:'#59a14f',borderRadius:3},
-      {label:'Xteink',data:D.monthly.map(function(m){return m.xteink}),backgroundColor:'#b07aa1',borderRadius:3}
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,beginAtZero:true,grid:{color:'#f0f0f0'}}}}});
+      {label:'PolyBuzz 利润',data:polyProfits,backgroundColor:'#4e79a7',borderRadius:3},
+      {label:'Gauth 提报',data:gauthProfits,backgroundColor:'#59a14f',borderRadius:3},
+      {label:'Xteink 提报',data:xtProfits,backgroundColor:'#b07aa1',borderRadius:3}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}},title:{display:true,text:'各项目月度利润/提报趋势 (USD)',font:{size:12}}},scales:{x:{stacked:true,title:{display:true,text:'月份'},grid:{display:false}},y:{stacked:true,beginAtZero:true,title:{display:true,text:'金额 (USD)'},ticks:{callback:function(v){return v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v}},grid:{color:'#f0f0f0'}}}}});
+    
     new Chart(document.getElementById('chartMonthLine'),{type:'line',data:{labels:months,datasets:[
-      {label:'PolyBuzz',data:D.monthly.map(function(m){return m.poly}),borderColor:'#4e79a7',backgroundColor:'transparent',tension:0.3,pointRadius:4},
-      {label:'Gauth',data:D.monthly.map(function(m){return m.gauth}),borderColor:'#59a14f',backgroundColor:'transparent',tension:0.3,pointRadius:4},
-      {label:'Xteink',data:D.monthly.map(function(m){return m.xteink}),borderColor:'#b07aa1',backgroundColor:'transparent',tension:0.3,pointRadius:4}
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}}});
+      {label:'PolyBuzz 利润',data:polyProfits,borderColor:'#4e79a7',backgroundColor:'transparent',tension:0.3,pointRadius:4},
+      {label:'Gauth 提报',data:gauthProfits,borderColor:'#59a14f',backgroundColor:'transparent',tension:0.3,pointRadius:4},
+      {label:'Xteink 提报',data:xtProfits,borderColor:'#b07aa1',backgroundColor:'transparent',tension:0.3,pointRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}},title:{display:true,text:'各项目月度利润/提报趋势 (USD)',font:{size:12}}},scales:{x:{title:{display:true,text:'月份'},grid:{display:false}},y:{beginAtZero:true,title:{display:true,text:'金额 (USD)'},ticks:{callback:function(v){return v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v}},grid:{color:'#f0f0f0'}}}});
   }
 }
 _chartMetrics = true;
