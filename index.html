@@ -76,14 +76,20 @@ document.getElementById("ut").textContent = new Date().toLocaleString("zh-CN");
 
 function draw(){
   var L=D.projects.map(function(p){return p.name});
+  var colors={poly:"#4e79a7",gauth:"#59a14f",xteink:"#b07aa1"};
+  var projectColors=D.projects.map(function(p){return p.name==="PolyBuzz"?"#4e79a7":p.name.indexOf("Gauth")>=0?"#59a14f":"#b07aa1"});
+
+  // Horizontal stacked bar: submitted vs confirmed
   new Chart(document.getElementById("c1"),{type:"bar",data:{labels:L,datasets:[
-    {label:"提报",data:D.projects.map(function(p){return p.submitted}),backgroundColor:"#4e79a7",borderRadius:5},
-    {label:"确认",data:D.projects.map(function(p){return p.confirmed}),backgroundColor:"#59a14f",borderRadius:5}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"top",labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,grid:{color:"#f0f0f0"}},x:{grid:{display:false}}}}});
+    {label:"提报",data:D.projects.map(function(p){return p.submitted}),backgroundColor:projectColors,borderRadius:5},
+    {label:"确认",data:D.projects.map(function(p){return p.confirmed}),backgroundColor:projectColors.map(function(c){return c+"88"}),borderRadius:5}
+  ]},options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"top",labels:{usePointStyle:true,font:{size:11}}}},scales:{x:{beginAtZero:true,grid:{color:"#f0f0f0"}},y:{grid:{display:false}}}}});
+
+  // Horizontal bar: client vs profit
   new Chart(document.getElementById("c2"),{type:"bar",data:{labels:L,datasets:[
     {label:"对客",data:D.projects.map(function(p){return p.client}),backgroundColor:"#f28e2b",borderRadius:5},
     {label:"利润",data:D.projects.map(function(p){return p.profit}),backgroundColor:"#59a14f",borderRadius:5}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"top",labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,ticks:{callback:function(v){return v>=1000?"$"+(v/1000).toFixed(0)+"k":"$"+v}},grid:{color:"#f0f0f0"}},x:{grid:{display:false}}}}});
+  ]},options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"top",labels:{usePointStyle:true,font:{size:11}}}},scales:{x:{beginAtZero:true,ticks:{callback:function(v){return v>=1000?"$"+(v/1000).toFixed(0)+"k":"$"+v}},grid:{color:"#f0f0f0"}},y:{grid:{display:false}}}}});
 }
 
 _metrics = true;
