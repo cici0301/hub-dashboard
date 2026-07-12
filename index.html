@@ -3,20 +3,11 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>项目汇总看板</title>
-<script>
-var _chartReady=false,_chartMetrics=null;
-(function(){
-  var CDNS=["https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.0/chart.umd.min.js","https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js","https://unpkg.com/chart.js@4.4.0/dist/chart.umd.min.js"];
-  function tryLoad(i){if(i>=CDNS.length)return;var s=document.createElement("script");s.src=CDNS[i];s.onload=function(){_chartReady=true;if(_chartMetrics)renderCharts(_chartMetrics)};s.onerror=function(){tryLoad(i+1)};document.head.appendChild(s)}
-  tryLoad(0);
-})();
-</script>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#f0f2f5; color:#1a1a2e; }
 .header { background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); color:#fff; padding:18px 28px; text-align:center; }
 .header h1 { font-size:22px; }
-.header .sub { font-size:12px; opacity:.7; margin-top:3px; }
 .container { max-width:1100px; margin:0 auto; padding:16px; }
 .kpi-row { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:16px; }
 .kpi-card { background:#fff; border-radius:8px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,.05); border-left:3px solid #ccc; text-align:center; }
@@ -24,6 +15,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 .kpi-card.c2 { border-left-color:#59a14f; } .c2 .v { color:#59a14f; }
 .kpi-card.c3 { border-left-color:#f28e2b; } .c3 .v { color:#f28e2b; }
 .kpi-card.c4 { border-left-color:#e15759; } .c4 .v { color:#e15759; }
+.kpi-card.c5 { border-left-color:#76b7b2; } .c5 .v { color:#76b7b2; }
 .kpi-card .l { font-size:11px; color:#888; margin-bottom:4px; }
 .kpi-card .v { font-size:24px; font-weight:700; }
 .kpi-card .s { font-size:10px; color:#aaa; margin-top:2px; }
@@ -45,64 +37,82 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 </style></head><body>
 <div class="header"><h1>📊 项目汇总看板</h1></div>
 <div class="container">
-<div class="kpi-row" id="kpi-row">
+<div class="kpi-row">
 <div class="kpi-card c1"><div class="l">累计提报</div><div class="v" id="k0">-</div></div>
 <div class="kpi-card c2"><div class="l">累计确认</div><div class="v" id="k1">-</div></div>
 <div class="kpi-card c3"><div class="l">累计对客</div><div class="v" id="k2">-</div></div>
 <div class="kpi-card c4"><div class="l">累计利润</div><div class="v" id="k3">-</div></div>
-<div class="kpi-card c3"><div class="l">累计利润率</div><div class="v" id="k4">-</div></div>
+<div class="kpi-card c5"><div class="l">累计利润率</div><div class="v" id="k4">-</div></div>
 </div>
 
 <div class="row">
-<div class="card"><h3>📊 各项目提报 vs 确认</h3><div class="chart-wrap"><canvas id="chart1"></canvas></div></div>
-<div class="card"><h3>💰 各项目对客 vs 利润</h3><div class="chart-wrap"><canvas id="chart2"></canvas></div></div>
+<div class="card"><h3>📊 各项目对比</h3><div class="chart-wrap"><canvas id="chart1"></canvas></div></div>
+<div class="card"><h3>💰 对客 vs 利润</h3><div class="chart-wrap"><canvas id="chart2"></canvas></div></div>
 </div>
 
-
-<div class="row" style="margin-bottom:16px">
+<div class="row">
 <div class="card"><h3>📈 月度提报趋势（柱状图）</h3><div class="chart-wrap"><canvas id="chartMonthBar"></canvas></div></div>
 <div class="card"><h3>📉 月度提报趋势（折线图）</h3><div class="chart-wrap"><canvas id="chartMonthLine"></canvas></div></div>
 </div>
-<div class="card" style="margin-bottom:16px"><h3>📂 各项目详情</h3>
-<div class="projects" id="projects"></div></div>
-<div class="ft">更新时间: <span id="ut"></span></div></div>
+
+<div class="projects" id="projects"></div>
+<div class="ft">更新时间: <span id="ut"></span> · <a href="https://cici0301.github.io/polybuzz-dashboard/">PolyBuzz</a> | <a href="https://cici0301.github.io/gauth-dashboard/">Gauth</a> | <a href="https://cici0301.github.io/xteink-dashboard/">Xteink</a></div></div>
 
 <script>
+var _chartReady=false,_chartMetrics=null;
+(function(){
+  var CDNS=["https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.0/chart.umd.min.js","https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js","https://unpkg.com/chart.js@4.4.0/dist/chart.umd.min.js"];
+  function tryLoad(i){if(i>=CDNS.length)return;var s=document.createElement("script");s.src=CDNS[i];s.onload=function(){_chartReady=true;if(_chartMetrics)renderCharts()};s.onerror=function(){tryLoad(i+1)};document.head.appendChild(s)}
+  tryLoad(0);
+})();
+
 var D = {"total": {"submitted": 457, "confirmed": 57, "client": 87650, "profit": 25925, "profitRate": 30}, "projects": [{"name": "PolyBuzz", "submitted": 285, "confirmed": 47, "client": 66550, "profit": 20330, "url": "https://cici0301.github.io/polybuzz-dashboard/"}, {"name": "Gauth \u5317\u7f8e", "submitted": 77, "confirmed": 7, "client": 15100, "profit": 3939, "url": "https://cici0301.github.io/gauth-dashboard/"}, {"name": "Xteink \u7f8e\u56fd", "submitted": 95, "confirmed": 3, "client": 6000, "profit": 1656, "url": "https://cici0301.github.io/xteink-dashboard/"}], "monthly": [{"month": "2026-05", "poly": 2, "gauth": 0, "xteink": 0, "total": 2}, {"month": "2026-06", "poly": 13, "gauth": 67, "xteink": 52, "total": 132}, {"month": "2026-07", "poly": 9, "gauth": 11, "xteink": 44, "total": 64}]};
 
+// KPIs
 document.getElementById('k0').textContent = D.total.submitted;
 document.getElementById('k1').textContent = D.total.confirmed;
 document.getElementById('k2').textContent = '$' + D.total.client.toLocaleString();
 document.getElementById('k3').textContent = '$' + D.total.profit.toLocaleString();
 document.getElementById('k4').textContent = D.total.profitRate + '%';
 
-var pc = '';
+// Project cards
+var pc='';
 D.projects.forEach(function(p,i){
-  var cls = 'p' + (i+1);
-  pc += '<a class="pcard '+cls+'" href="'+p.url+'" target="_blank"><h3>'+p.name+'</h3><div class="num">'+p.confirmed+' 确认 / '+p.submitted+' 提报</div><div class="meta">对客 $'+p.client.toLocaleString()+' | 利润 $'+p.profit.toLocaleString()+'</div><div class="meta" style="margin-top:4px;color:#4e79a7">点击进入看板 →</div></a>';
+  pc += '<a class="pcard p'+(i+1)+'" href="'+p.url+'" target="_blank"><h3>'+p.name+'</h3><div class="num">'+p.confirmed+' 确认 / '+p.submitted+' 提报</div><div class="meta">对客 $'+p.client.toLocaleString()+' | 利润 $'+p.profit.toLocaleString()+'</div><div class="meta" style="margin-top:4px;color:#4e79a7">点击进入 →</div></a>';
 });
 document.getElementById('projects').innerHTML = pc;
-
-// Charts
-function renderCharts(_){
-
-var labels = D.projects.map(function(p){return p.name;});
-var submitted = D.projects.map(function(p){return p.submitted;});
-var confirmed = D.projects.map(function(p){return p.confirmed;});
-var clients = D.projects.map(function(p){return p.client;});
-var profits = D.projects.map(function(p){return p.profit;});
-
-new Chart(document.getElementById('chart1'), {type:'bar',data:{labels:labels,datasets:[
-  {label:'提报',data:submitted,backgroundColor:'#4e79a7',borderRadius:5},
-  {label:'确认',data:confirmed,backgroundColor:'#59a14f',borderRadius:5}
-]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}}});
-
-new Chart(document.getElementById('chart2'), {type:'bar',data:{labels:labels,datasets:[
-  {label:'对客',data:clients,backgroundColor:'#f28e2b',borderRadius:5},
-  {label:'利润',data:profits,backgroundColor:'#59a14f',borderRadius:5}
-]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,ticks:{callback:function(v){return v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v;}},grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}}});
-
-_chartMetrics = true;
-if (typeof Chart !== "undefined") renderCharts(true);
 document.getElementById('ut').textContent = new Date().toLocaleString('zh-CN');
+
+function renderCharts(){
+  var labels = D.projects.map(function(p){return p.name;});
+  
+  // Bar: submitted vs confirmed
+  new Chart(document.getElementById('chart1'),{type:'bar',data:{labels:labels,datasets:[
+    {label:'提报',data:D.projects.map(function(p){return p.submitted}),backgroundColor:'#4e79a7',borderRadius:5},
+    {label:'确认',data:D.projects.map(function(p){return p.confirmed}),backgroundColor:'#59a14f',borderRadius:5}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}}});
+  
+  // Bar: client vs profit
+  new Chart(document.getElementById('chart2'),{type:'bar',data:{labels:labels,datasets:[
+    {label:'对客',data:D.projects.map(function(p){return p.client}),backgroundColor:'#f28e2b',borderRadius:5},
+    {label:'利润',data:D.projects.map(function(p){return p.profit}),backgroundColor:'#59a14f',borderRadius:5}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,ticks:{callback:function(v){return v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v}},grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}}});
+
+  // Monthly charts
+  if(D.monthly && D.monthly.length>0){
+    var months=D.monthly.map(function(m){return m.month.substring(5)});
+    new Chart(document.getElementById('chartMonthBar'),{type:'bar',data:{labels:months,datasets:[
+      {label:'PolyBuzz',data:D.monthly.map(function(m){return m.poly}),backgroundColor:'#4e79a7',borderRadius:3},
+      {label:'Gauth',data:D.monthly.map(function(m){return m.gauth}),backgroundColor:'#59a14f',borderRadius:3},
+      {label:'Xteink',data:D.monthly.map(function(m){return m.xteink}),backgroundColor:'#b07aa1',borderRadius:3}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,beginAtZero:true,grid:{color:'#f0f0f0'}}}}});
+    new Chart(document.getElementById('chartMonthLine'),{type:'line',data:{labels:months,datasets:[
+      {label:'PolyBuzz',data:D.monthly.map(function(m){return m.poly}),borderColor:'#4e79a7',backgroundColor:'transparent',tension:0.3,pointRadius:4},
+      {label:'Gauth',data:D.monthly.map(function(m){return m.gauth}),borderColor:'#59a14f',backgroundColor:'transparent',tension:0.3,pointRadius:4},
+      {label:'Xteink',data:D.monthly.map(function(m){return m.xteink}),borderColor:'#b07aa1',backgroundColor:'transparent',tension:0.3,pointRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}}});
+  }
+}
+_chartMetrics = true;
+if(typeof Chart !== "undefined") renderCharts();
 </script></body></html>
