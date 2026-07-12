@@ -67,25 +67,29 @@ document.getElementById("k2").textContent = "$" + D.total.client.toLocaleString(
 document.getElementById("k3").textContent = "$" + D.total.profit.toLocaleString();
 document.getElementById("k4").textContent = D.total.profitRate + "%";
 
-var pc="";
-D.projects.forEach(function(p,i){
-  pc+="<a class="pcard p"+(i+1)+"" href=""+p.url+"" target="_blank"><h3>"+p.name+"</h3><div class="num">"+p.confirmed+" 确认 / "+p.submitted+" 提报</div><div class="meta">对客 $"+p.client.toLocaleString()+" | 利润 $"+p.profit.toLocaleString()+"</div><div class="meta" style="margin-top:4px;color:#4e79a7">点击进入 &rarr;</div></a>";
-});
-document.getElementById("projects").innerHTML = pc;
+(function(){
+  var h="";
+  D.projects.forEach(function(p,i){
+    h += "<a class="pcard p" + (i+1) + "" href="" + p.url + "" target="_blank">";
+    h += "<h3>" + p.name + "</h3>";
+    h += "<div class="num">" + p.confirmed + " 确认 / " + p.submitted + " 提报</div>";
+    h += "<div class="meta">对客 $" + p.client.toLocaleString() + " | 利润 $" + p.profit.toLocaleString() + "</div>";
+    h += "<div class="meta" style="margin-top:4px;color:#4e79a7">点击进入 &rarr;</div></a>";
+  });
+  document.getElementById("projects").innerHTML = h;
+})();
+
 document.getElementById("ut").textContent = new Date().toLocaleString("zh-CN");
 
 function draw(){
   var L=D.projects.map(function(p){return p.name});
-  var colors={poly:"#4e79a7",gauth:"#59a14f",xteink:"#b07aa1"};
   var projectColors=D.projects.map(function(p){return p.name==="PolyBuzz"?"#4e79a7":p.name.indexOf("Gauth")>=0?"#59a14f":"#b07aa1"});
 
-  // Horizontal stacked bar: submitted vs confirmed
   new Chart(document.getElementById("c1"),{type:"bar",data:{labels:L,datasets:[
     {label:"提报",data:D.projects.map(function(p){return p.submitted}),backgroundColor:projectColors,borderRadius:5},
     {label:"确认",data:D.projects.map(function(p){return p.confirmed}),backgroundColor:projectColors.map(function(c){return c+"88"}),borderRadius:5}
   ]},options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"top",labels:{usePointStyle:true,font:{size:11}}}},scales:{x:{beginAtZero:true,grid:{color:"#f0f0f0"}},y:{grid:{display:false}}}}});
 
-  // Horizontal bar: client vs profit
   new Chart(document.getElementById("c2"),{type:"bar",data:{labels:L,datasets:[
     {label:"对客",data:D.projects.map(function(p){return p.client}),backgroundColor:"#f28e2b",borderRadius:5},
     {label:"利润",data:D.projects.map(function(p){return p.profit}),backgroundColor:"#59a14f",borderRadius:5}
