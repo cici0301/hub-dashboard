@@ -73,5 +73,5 @@ function draw() {
     new Chart(document.getElementById('c4'),{type:'line',data:{labels:M,datasets:[{label:'PolyBuzz 利润',data:poly,borderColor:'#4e79a7',backgroundColor:'transparent',tension:0.3,pointRadius:4},{label:'Gauth 提报',data:gauth,borderColor:'#59a14f',backgroundColor:'transparent',tension:0.3,pointRadius:4},{label:'Xteink 提报',data:xt,borderColor:'#b07aa1',backgroundColor:'transparent',tension:0.3,pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}},title:{display:true,text:'月度利润/提报 (USD)',font:{size:12}}},scales:{x:{title:{display:true,text:'月份'},grid:{display:false}},y:{beginAtZero:true,title:{display:true,text:'金额 (USD)'},ticks:{callback:function(v){return v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v}},grid:{color:'#f0f0f0'}}}}});
   }
 }
-if(typeof Chart!=="undefined")draw();
+var _tries=0;var _check=setInterval(function(){_tries++;if(typeof Chart!=="undefined"){clearInterval(_check);draw()}if(_tries>30)clearInterval(_check)},200);
 </script></body></html>
