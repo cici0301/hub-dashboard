@@ -11,7 +11,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 .header h1 { font-size:22px; }
 .header .sub { font-size:12px; opacity:.7; margin-top:3px; }
 .container { max-width:1100px; margin:0 auto; padding:16px; }
-.kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px; }
+.kpi-row { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-bottom:16px; }
 .kpi-card { background:#fff; border-radius:8px; padding:16px; box-shadow:0 1px 3px rgba(0,0,0,.05); border-left:3px solid #ccc; text-align:center; }
 .kpi-card.c1 { border-left-color:#4e79a7; } .c1 .v { color:#4e79a7; }
 .kpi-card.c2 { border-left-color:#59a14f; } .c2 .v { color:#59a14f; }
@@ -36,13 +36,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 .ft { text-align:center; color:#bbb; font-size:10px; margin-top:12px; }
 @media(max-width:900px){.kpi-row{grid-template-columns:repeat(2,1fr)}.row{grid-template-columns:1fr}.projects{grid-template-columns:1fr}}
 </style></head><body>
-<div class="header"><h1>📊 项目汇总看板</h1><div class="sub">PolyBuzz · Gauth · Xteink</div></div>
+<div class="header"><h1>📊 项目汇总看板</h1></div>
 <div class="container">
 <div class="kpi-row" id="kpi-row">
 <div class="kpi-card c1"><div class="l">累计提报</div><div class="v" id="k0">-</div></div>
 <div class="kpi-card c2"><div class="l">累计确认</div><div class="v" id="k1">-</div></div>
 <div class="kpi-card c3"><div class="l">累计对客</div><div class="v" id="k2">-</div></div>
 <div class="kpi-card c4"><div class="l">累计利润</div><div class="v" id="k3">-</div></div>
+<div class="kpi-card c3"><div class="l">累计利润率</div><div class="v" id="k4">-</div></div>
 </div>
 
 <div class="row">
@@ -55,12 +56,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 <div class="ft">更新时间: <span id="ut"></span></div></div>
 
 <script>
-var D = {"total": {"submitted": 457, "confirmed": 57, "client": 87650, "profit": 25925}, "projects": [{"name": "PolyBuzz", "submitted": 285, "confirmed": 47, "client": 66550, "profit": 20330, "url": "https://cici0301.github.io/polybuzz-dashboard/"}, {"name": "Gauth \u5317\u7f8e", "submitted": 77, "confirmed": 7, "client": 15100, "profit": 3939, "url": "https://cici0301.github.io/gauth-dashboard/"}, {"name": "Xteink \u7f8e\u56fd", "submitted": 95, "confirmed": 3, "client": 6000, "profit": 1656, "url": "https://cici0301.github.io/xteink-dashboard/"}]};
+var D = {"total": {"submitted": 457, "confirmed": 57, "client": 87650, "profit": 25925, "profitRate": 29.6}, "projects": [{"name": "PolyBuzz", "submitted": 285, "confirmed": 47, "client": 66550, "profit": 20330, "url": "https://cici0301.github.io/polybuzz-dashboard/"}, {"name": "Gauth \u5317\u7f8e", "submitted": 77, "confirmed": 7, "client": 15100, "profit": 3939, "url": "https://cici0301.github.io/gauth-dashboard/"}, {"name": "Xteink \u7f8e\u56fd", "submitted": 95, "confirmed": 3, "client": 6000, "profit": 1656, "url": "https://cici0301.github.io/xteink-dashboard/"}]};
 
 document.getElementById('k0').textContent = D.total.submitted;
 document.getElementById('k1').textContent = D.total.confirmed;
 document.getElementById('k2').textContent = '$' + D.total.client.toLocaleString();
 document.getElementById('k3').textContent = '$' + D.total.profit.toLocaleString();
+document.getElementById('k4').textContent = D.total.profitRate + '%';
 
 var pc = '';
 D.projects.forEach(function(p,i){
