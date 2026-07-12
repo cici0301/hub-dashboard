@@ -6,89 +6,58 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f5;color:#1a1a2e}
-.header{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);color:#fff;padding:18px 28px;text-align:center}
-.header h1{font-size:22px}
-.container{max-width:1100px;margin:0 auto;padding:16px}
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
-.kpi-card{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.05);border-left:3px solid #ccc;text-align:center}
-.kpi-card.c1{border-left-color:#4e79a7}.c1 .v{color:#4e79a7}
-.kpi-card.c2{border-left-color:#59a14f}.c2 .v{color:#59a14f}
-.kpi-card.c3{border-left-color:#f28e2b}.c3 .v{color:#f28e2b}
-.kpi-card.c4{border-left-color:#e15759}.c4 .v{color:#e15759}
-.kpi-card.c5{border-left-color:#76b7b2}.c5 .v{color:#76b7b2}
-.kpi-card .l{font-size:11px;color:#888;margin-bottom:4px}
-.kpi-card .v{font-size:24px;font-weight:700}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
-.card{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.card h3{font-size:13px;margin-bottom:12px;color:#333}
-.eff-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-.eff-card{text-align:center;padding:14px 10px;background:#fff;border-radius:6px;border-left:3px solid #ccc}
-.eff-card .name{font-size:12px;font-weight:600}
-.eff-card .label{font-size:10px;color:#999;margin-top:8px}
-.eff-card .val{font-size:20px;font-weight:700;color:#1a1a2e}
-.eff-card .val2{font-size:16px;font-weight:700}
-.eff-card .note{font-size:9px;color:#aaa;margin-top:2px}
-.donut{width:180px;height:180px;border-radius:50%;position:relative;margin:0 auto;conic-gradient(#4e79a7 0deg 282.3066538090646deg, #59a14f 282.3066538090646deg 337.00443587270973deg, #b07aa1 337.00443587270973deg 360deg)}
-.donut-center{position:absolute;top:28%;left:28%;width:44%;height:44%;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column}
-.donut-center .big{font-size:18px;font-weight:700}
-.donut-center .small{font-size:9px;color:#999}
-.legend{display:flex;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap}
-.legend-item{display:flex;align-items:center;gap:4px;font-size:11px}
-.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.bars{margin-top:12px}
-.bar-row{margin-bottom:8px}
-.bar-l{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
-.bar-l .nm{font-weight:600}
-.bar-t{height:20px;background:#f0f0f0;border-radius:10px;overflow:hidden}
-.bar-f{height:100%;border-radius:10px}
-.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-.pcard{background:#fff;border-radius:8px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.05);text-decoration:none;color:inherit;display:block;transition:all .2s}
-.pcard:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
-.pcard.p1{border-top:3px solid #4e79a7}.pcard.p2{border-top:3px solid #59a14f}.pcard.p3{border-top:3px solid #b07aa1}
-.pcard h3{font-size:15px;margin-bottom:8px}
-.pcard .num{font-size:18px;font-weight:700}
-.pcard .meta{font-size:11px;color:#999;margin-top:4px}
-.ft{text-align:center;color:#bbb;font-size:10px;margin-top:12px}
-@media(max-width:900px){.kpi-row{grid-template-columns:repeat(2,1fr)}.row{grid-template-columns:1fr}.projects{grid-template-columns:1fr}.eff-row{grid-template-columns:1fr}}
+.h{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);color:#fff;padding:18px 28px;text-align:center}
+.h h1{font-size:22px}
+.c{max-width:1100px;margin:0 auto;padding:16px}
+.k{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}
+.kc{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.05);border-left:3px solid #ccc;text-align:center}
+.k1{border-left-color:#4e79a7}.k1 .v{color:#4e79a7}
+.k2{border-left-color:#59a14f}.k2 .v{color:#59a14f}
+.k3{border-left-color:#f28e2b}.k3 .v{color:#f28e2b}
+.k4{border-left-color:#e15759}.k4 .v{color:#e15759}
+.k5{border-left-color:#76b7b2}.k5 .v{color:#76b7b2}
+.kc .l{font-size:11px;color:#888;margin-bottom:4px}
+.kc .v{font-size:24px;font-weight:700}
+.r{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.ca{background:#fff;border-radius:8px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.ca h3{font-size:13px;margin-bottom:12px;color:#333}
+.bs{margin-top:4px}
+.br{margin-bottom:10px}
+.bl{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
+.bl .n{font-weight:600}
+.bt{height:22px;background:#f0f0f0;border-radius:11px;overflow:hidden}
+.bf{height:100%;border-radius:11px}
+.ps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.pc{background:#fff;border-radius:8px;padding:16px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.05);text-decoration:none;color:inherit;display:block;transition:all .2s}
+.pc:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.pc.p1{border-top:3px solid #4e79a7}.pc.p2{border-top:3px solid #59a14f}.pc.p3{border-top:3px solid #b07aa1}
+.pc h3{font-size:15px;margin-bottom:8px}
+.pc .n{font-size:18px;font-weight:700}
+.pc .m{font-size:11px;color:#999;margin-top:4px}
+.f{text-align:center;color:#bbb;font-size:10px;margin-top:12px}
+@media(max-width:900px){.k{grid-template-columns:repeat(2,1fr)}.r{grid-template-columns:1fr}.ps{grid-template-columns:1fr}}
 </style></head><body>
-<div class="header"><h1>📊 项目汇总看板</h1></div>
-<div class="container">
-<div class="kpi-row">
-<div class="kpi-card c1"><div class="l">累计提报</div><div class="v">457</div></div>
-<div class="kpi-card c2"><div class="l">累计确认</div><div class="v">57</div></div>
-<div class="kpi-card c3"><div class="l">累计对客</div><div class="v">$87,650</div></div>
-<div class="kpi-card c4"><div class="l">累计利润</div><div class="v">$25,925</div></div>
-<div class="kpi-card c5"><div class="l">累计利润率</div><div class="v">30%</div></div>
+<div class="h"><h1>📊 项目汇总看板</h1></div>
+<div class="c">
+<div class="k">
+<div class="kc k1"><div class="l">累计提报</div><div class="v">457</div></div>
+<div class="kc k2"><div class="l">累计确认</div><div class="v">57</div></div>
+<div class="kc k3"><div class="l">累计对客</div><div class="v">$87,650</div></div>
+<div class="kc k4"><div class="l">累计利润</div><div class="v">$25,925</div></div>
+<div class="kc k5"><div class="l">累计利润率</div><div class="v">30%</div></div>
 </div>
-<div class="row">
-<div class="card"><h3>📊 各项目对比（提报/确认）</h3><div class="bars">
-<div class="bar-row"><div class="bar-l"><span class="nm">PolyBuzz</span><span>47/285</span></div><div class="bar-t"><div class="bar-f" style="width:100%;background:#4e79a7"></div></div></div>
-<div class="bar-t" style="margin-top:2px;height:14px"><div class="bar-f" style="width:16%;background:#59a14f"></div></div>
-<div class="bar-row"><div class="bar-l"><span class="nm">Gauth 北美</span><span>7/77</span></div><div class="bar-t"><div class="bar-f" style="width:27%;background:#4e79a7"></div></div></div>
-<div class="bar-t" style="margin-top:2px;height:14px"><div class="bar-f" style="width:2%;background:#59a14f"></div></div>
-<div class="bar-row"><div class="bar-l"><span class="nm">Xteink 美国</span><span>3/95</span></div><div class="bar-t"><div class="bar-f" style="width:33%;background:#4e79a7"></div></div></div>
-<div class="bar-t" style="margin-top:2px;height:14px"><div class="bar-f" style="width:1%;background:#59a14f"></div></div>
+<div class="r">
+<div class="ca"><h3>📊 各项目提报 vs 确认</h3><div class="bs">
+<div class="br"><div class="bl"><span class="n">PolyBuzz</span><span>47/285</span></div><div class="bt"><div class="bf" style="width:100%;background:#4e79a7"></div></div><div class="bt" style="margin-top:2px;height:14px"><div class="bf" style="width:16%;background:#59a14f"></div></div></div>
+<div class="br"><div class="bl"><span class="n">Gauth 北美</span><span>7/77</span></div><div class="bt"><div class="bf" style="width:27%;background:#4e79a7"></div></div><div class="bt" style="margin-top:2px;height:14px"><div class="bf" style="width:2%;background:#59a14f"></div></div></div>
+<div class="br"><div class="bl"><span class="n">Xteink 美国</span><span>3/95</span></div><div class="bt"><div class="bf" style="width:33%;background:#4e79a7"></div></div><div class="bt" style="margin-top:2px;height:14px"><div class="bf" style="width:1%;background:#59a14f"></div></div></div>
 </div></div>
-<div class="card"><h3>🍰 利润构成</h3>
-<div class="donut"><div class="donut-center"><div class="big">$25,925</div><div class="small">总利润</div></div></div>
-<div class="legend">
-<div class="legend-item"><div class="legend-dot" style="background:#4e79a7"></div>PolyBuzz $20,330 (78%)</div>
-<div class="legend-item"><div class="legend-dot" style="background:#59a14f"></div>Gauth 北美 $3,939 (15%)</div>
-<div class="legend-item"><div class="legend-dot" style="background:#b07aa1"></div>Xteink 美国 $1,656 (6%)</div>
+<div class="ca"><h3>💰 各项目对客 vs 利润</h3><div class="bs">
+<div class="br"><div class="bl"><span class="n">PolyBuzz</span><span>$66,550 / $20,330</span></div><div class="bt"><div class="bf" style="width:100%;background:#f28e2b"></div></div><div class="bt" style="margin-top:2px;height:14px"><div class="bf" style="width:31%;background:#59a14f"></div></div></div>
+<div class="br"><div class="bl"><span class="n">Gauth 北美</span><span>$15,100 / $3,939</span></div><div class="bt"><div class="bf" style="width:23%;background:#f28e2b"></div></div><div class="bt" style="margin-top:2px;height:14px"><div class="bf" style="width:6%;background:#59a14f"></div></div></div>
+<div class="br"><div class="bl"><span class="n">Xteink 美国</span><span>$6,000 / $1,656</span></div><div class="bt"><div class="bf" style="width:9%;background:#f28e2b"></div></div><div class="bt" style="margin-top:2px;height:14px"><div class="bf" style="width:2%;background:#59a14f"></div></div></div>
 </div></div>
 </div>
-<div class="row">
-<div class="card"><h3>📊 项目效率对比</h3><div class="eff-row">
-<div class="eff-card" style="border-left-color:#4e79a7"><div class="name" style="color:#4e79a7">PolyBuzz</div><div class="label">平均单笔对客</div><div class="val">$1,416</div><div class="label">平均单笔利润</div><div class="val2" style="color:#4e79a7">$433</div><div class="note">47 笔确认</div></div>
-<div class="eff-card" style="border-left-color:#59a14f"><div class="name" style="color:#59a14f">Gauth 北美</div><div class="label">平均单笔对客</div><div class="val">$2,157</div><div class="label">平均单笔利润</div><div class="val2" style="color:#59a14f">$563</div><div class="note">7 笔确认</div></div>
-<div class="eff-card" style="border-left-color:#b07aa1"><div class="name" style="color:#b07aa1">Xteink 美国</div><div class="label">平均单笔对客</div><div class="val">$2,000</div><div class="label">平均单笔利润</div><div class="val2" style="color:#b07aa1">$552</div><div class="note">3 笔确认</div></div>
-</div></div>
-<div class="card"><h3>💰 对客 vs 利润</h3><div class="bars">
-<div class="bar-row"><div class="bar-l"><span class="nm">PolyBuzz</span><span>$66,550 / $20,330</span></div><div class="bar-t"><div class="bar-f" style="width:100%;background:#f28e2b"></div></div><div class="bar-t" style="margin-top:2px;height:14px"><div class="bar-f" style="width:31%;background:#59a14f"></div></div></div>
-<div class="bar-row"><div class="bar-l"><span class="nm">Gauth 北美</span><span>$15,100 / $3,939</span></div><div class="bar-t"><div class="bar-f" style="width:23%;background:#f28e2b"></div></div><div class="bar-t" style="margin-top:2px;height:14px"><div class="bar-f" style="width:6%;background:#59a14f"></div></div></div>
-<div class="bar-row"><div class="bar-l"><span class="nm">Xteink 美国</span><span>$6,000 / $1,656</span></div><div class="bar-t"><div class="bar-f" style="width:9%;background:#f28e2b"></div></div><div class="bar-t" style="margin-top:2px;height:14px"><div class="bar-f" style="width:2%;background:#59a14f"></div></div></div>
-</div></div>
-</div>
-<div class="projects"><a class="pcard p1" href="https://cici0301.github.io/polybuzz-dashboard/" target="_blank"><h3>PolyBuzz</h3><div class="num">47 确认 / 285 提报</div><div class="meta">对客 $66,550 | 利润 $20,330</div><div class="meta" style="margin-top:4px;color:#4e79a7">点击进入 →</div></a><a class="pcard p2" href="https://cici0301.github.io/gauth-dashboard/" target="_blank"><h3>Gauth 北美</h3><div class="num">7 确认 / 77 提报</div><div class="meta">对客 $15,100 | 利润 $3,939</div><div class="meta" style="margin-top:4px;color:#4e79a7">点击进入 →</div></a><a class="pcard p3" href="https://cici0301.github.io/xteink-dashboard/" target="_blank"><h3>Xteink 美国</h3><div class="num">3 确认 / 95 提报</div><div class="meta">对客 $6,000 | 利润 $1,656</div><div class="meta" style="margin-top:4px;color:#4e79a7">点击进入 →</div></a></div>
-<div class="ft">更新时间: 2026-07-12</div></div>
+<div class="ps"><a class="pc p1" href="https://cici0301.github.io/polybuzz-dashboard/" target="_blank"><h3>PolyBuzz</h3><div class="n">47 确认 / 285 提报</div><div class="m">对客 $66,550 | 利润 $20,330</div><div class="m" style="margin-top:4px;color:#4e79a7">点击进入 →</div></a><a class="pc p2" href="https://cici0301.github.io/gauth-dashboard/" target="_blank"><h3>Gauth 北美</h3><div class="n">7 确认 / 77 提报</div><div class="m">对客 $15,100 | 利润 $3,939</div><div class="m" style="margin-top:4px;color:#4e79a7">点击进入 →</div></a><a class="pc p3" href="https://cici0301.github.io/xteink-dashboard/" target="_blank"><h3>Xteink 美国</h3><div class="n">3 确认 / 95 提报</div><div class="m">对客 $6,000 | 利润 $1,656</div><div class="m" style="margin-top:4px;color:#4e79a7">点击进入 →</div></a></div>
+<div class="f">更新时间: 2026-07-12 · <a href="https://cici0301.github.io/polybuzz-dashboard/">PolyBuzz</a> | <a href="https://cici0301.github.io/gauth-dashboard/">Gauth</a> | <a href="https://cici0301.github.io/xteink-dashboard/">Xteink</a></div></div>
 </body></html>
