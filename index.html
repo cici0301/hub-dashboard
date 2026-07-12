@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>项目汇总看板</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+var _chartReady=false,_chartMetrics=null;
+(function(){
+  var CDNS=["https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.0/chart.umd.min.js","https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js","https://unpkg.com/chart.js@4.4.0/dist/chart.umd.min.js"];
+  function tryLoad(i){if(i>=CDNS.length)return;var s=document.createElement("script");s.src=CDNS[i];s.onload=function(){_chartReady=true;if(_chartMetrics)renderCharts(_chartMetrics)};s.onerror=function(){tryLoad(i+1)};document.head.appendChild(s)}
+  tryLoad(0);
+})();
+</script>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#f0f2f5; color:#1a1a2e; }
@@ -77,6 +84,8 @@ D.projects.forEach(function(p,i){
 document.getElementById('projects').innerHTML = pc;
 
 // Charts
+function renderCharts(_){
+
 var labels = D.projects.map(function(p){return p.name;});
 var submitted = D.projects.map(function(p){return p.submitted;});
 var confirmed = D.projects.map(function(p){return p.confirmed;});
@@ -93,5 +102,7 @@ new Chart(document.getElementById('chart2'), {type:'bar',data:{labels:labels,dat
   {label:'利润',data:profits,backgroundColor:'#59a14f',borderRadius:5}
 ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},scales:{y:{beginAtZero:true,ticks:{callback:function(v){return v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v;}},grid:{color:'#f0f0f0'}},x:{grid:{display:false}}}}});
 
+_chartMetrics = true;
+if (typeof Chart !== "undefined") renderCharts(true);
 document.getElementById('ut').textContent = new Date().toLocaleString('zh-CN');
 </script></body></html>
