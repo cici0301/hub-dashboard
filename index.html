@@ -46,14 +46,20 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 <div class="card"><h3>💰 对客 vs 利润</h3><div class="chart-wrap"><canvas id="c2"></canvas></div></div>
 </div>
 <div class="row">
-<div class="card"><h3>📈 月度利润/提报（柱状图）</h3><div class="chart-wrap"><canvas id="c3"></canvas></div></div>
-<div class="card"><h3>📉 月度利润/提报（折线图）</h3><div class="chart-wrap"><canvas id="c4"></canvas></div></div>
+<div class="card">
+<h3>📊 项目效率对比</h3>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px" id="eff"></div>
+</div>
+<div class="card">
+<h3>🍰 利润构成</h3>
+<div class="chart-wrap"><canvas id="cPie"></canvas></div>
+</div>
 </div>
 <div class="projects" id="projects"></div>
 <div class="ft">更新时间: <span id="ut"></span></div></div>
 <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-var D = {"total": {"submitted": 457, "confirmed": 57, "client": 87650, "profit": 25925, "profitRate": 30}, "projects": [{"name": "PolyBuzz", "submitted": 285, "confirmed": 47, "client": 66550, "profit": 20330, "url": "https://cici0301.github.io/polybuzz-dashboard/"}, {"name": "Gauth \u5317\u7f8e", "submitted": 77, "confirmed": 7, "client": 15100, "profit": 3939, "url": "https://cici0301.github.io/gauth-dashboard/"}, {"name": "Xteink \u7f8e\u56fd", "submitted": 95, "confirmed": 3, "client": 6000, "profit": 1656, "url": "https://cici0301.github.io/xteink-dashboard/"}], "monthly": [{"month": "2026-05", "poly": 2500, "gauth": 0, "xteink": 0}, {"month": "2026-06", "poly": 164969, "gauth": 67, "xteink": 52}, {"month": "2026-07", "poly": 26100, "gauth": 11, "xteink": 44}]};
+var D = {"total": {"submitted": 457, "confirmed": 57, "client": 87650, "profit": 25925, "profitRate": 30}, "projects": [{"name": "PolyBuzz", "submitted": 285, "confirmed": 47, "client": 66550, "profit": 20330, "url": "https://cici0301.github.io/polybuzz-dashboard/", "avgClient": 1416, "avgProfit": 433}, {"name": "Gauth \u5317\u7f8e", "submitted": 77, "confirmed": 7, "client": 15100, "profit": 3939, "url": "https://cici0301.github.io/gauth-dashboard/", "avgClient": 2157, "avgProfit": 563}, {"name": "Xteink \u7f8e\u56fd", "submitted": 95, "confirmed": 3, "client": 6000, "profit": 1656, "url": "https://cici0301.github.io/xteink-dashboard/", "avgClient": 2000, "avgProfit": 552}], "monthly": [{"month": "2026-05", "poly": 2500, "gauth": 0, "xteink": 0}, {"month": "2026-06", "poly": 164969, "gauth": 67, "xteink": 52}, {"month": "2026-07", "poly": 26100, "gauth": 11, "xteink": 44}]};
 document.getElementById('k0').textContent = D.total.submitted;
 document.getElementById('k1').textContent = D.total.confirmed;
 document.getElementById('k2').textContent = '$' + D.total.client.toLocaleString();
