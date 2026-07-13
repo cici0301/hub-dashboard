@@ -18,15 +18,28 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 .c5 { border-left-color:#76b7b2; } .c5 .v { color:#76b7b2; }
 .kpi-card .l { font-size:11px; color:#888; margin-bottom:4px; }
 .kpi-card .v { font-size:24px; font-weight:700; }
-.projects { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:16px; }
+.projects { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:20px; }
 .pcard { background:#fff; border-radius:8px; padding:16px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.05); cursor:pointer; transition:all .2s; text-decoration:none; color:inherit; display:block; }
 .pcard:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.1); }
 .pcard.p1 { border-top:3px solid #4e79a7; } .pcard.p2 { border-top:3px solid #59a14f; } .pcard.p3 { border-top:3px solid #b07aa1; } .pcard.p4 { border-top:3px solid #e15759; } .pcard.p5 { border-top:3px solid #76b7b2; }
 .pcard h3 { font-size:15px; margin-bottom:8px; }
 .pcard .num { font-size:18px; font-weight:700; color:#1a1a2e; }
 .pcard .meta { font-size:11px; color:#999; margin-top:4px; }
+/* Donut chart */
+.donut-section { display:flex; align-items:center; justify-content:center; gap:40px; background:#fff; border-radius:8px; padding:24px; box-shadow:0 1px 3px rgba(0,0,0,.05); margin-bottom:20px; flex-wrap:wrap; }
+.donut-wrap { text-align:center; }
+.donut { width:200px; height:200px; border-radius:50%; position:relative; margin:0 auto; background:conic-gradient(#4e79a7 0.0deg 263.3deg,#59a14f 263.3deg 314.4deg,#b07aa1 314.4deg 335.8deg,#e15759 335.8deg 343.5deg,#76b7b2 343.5deg 360.0deg); }
+.donut-center { position:absolute; top:30%; left:30%; width:40%; height:40%; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+.donut-center .big { font-size:22px; font-weight:700; color:#1a1a2e; }
+.donut-center .small { font-size:10px; color:#999; }
+.donut-title { font-size:13px; color:#333; font-weight:600; margin-bottom:12px; }
+.legend-list { display:flex; flex-direction:column; gap:8px; }
+.li { display:flex; align-items:center; gap:8px; font-size:12px; }
+.ld { width:12px; height:12px; border-radius:3px; flex-shrink:0; }
+.ln { font-weight:600; min-width:80px; }
+.lv { color:#666; }
 .ft { text-align:center; color:#bbb; font-size:10px; margin-top:12px; }
-@media(max-width:900px){.kpi-row{grid-template-columns:repeat(2,1fr)}.projects{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.kpi-row{grid-template-columns:repeat(2,1fr)}.projects{grid-template-columns:repeat(3,1fr)}.donut-section{flex-direction:column}}
 @media(max-width:600px){.projects{grid-template-columns:1fr}}
 </style>
 </head>
@@ -39,6 +52,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 <div class="kpi-card c3"><div class="l">累计对客</div><div class="v" id="k2">-</div></div>
 <div class="kpi-card c4"><div class="l">累计利润</div><div class="v" id="k3">-</div></div>
 <div class="kpi-card c5"><div class="l">累计利润率</div><div class="v" id="k4">-</div></div>
+</div>
+<div class="donut-section">
+<div class="donut-wrap">
+<div class="donut-title">🍰 利润构成</div>
+<div class="donut"><div class="donut-center"><div class="big">$$27,792</div><div class="small">总利润</div></div></div>
+</div>
+<div class="legend-list"><div class="li"><div class="ld" style="background:#4e79a7"></div><span class="ln">PolyBuzz</span><span class="lv">$20,330 (73%)</span></div><div class="li"><div class="ld" style="background:#59a14f"></div><span class="ln">Gauth 北美</span><span class="lv">$3,939 (14%)</span></div><div class="li"><div class="ld" style="background:#b07aa1"></div><span class="ln">Xteink 美国</span><span class="lv">$1,656 (6%)</span></div><div class="li"><div class="ld" style="background:#e15759"></div><span class="ln">老铺黄金</span><span class="lv">$597 (2%)</span></div><div class="li"><div class="ld" style="background:#76b7b2"></div><span class="ln">海信投影仪</span><span class="lv">$1,270 (5%)</span></div></div>
 </div>
 <div class="projects" id="projects"></div>
 <div class="ft">更新时间: <span id="ut"></span></div>
@@ -60,28 +80,23 @@ document.getElementById("k4").textContent = D.total.profitRate + "%";
     card.className = "pcard p" + (i + 1);
     card.href = p.url;
     card.target = "_blank";
-
     var title = document.createElement("h3");
     title.textContent = p.name;
     card.appendChild(title);
-
     var num = document.createElement("div");
     num.className = "num";
     num.textContent = p.confirmed + " 确认 / " + p.submitted + " 提报";
     card.appendChild(num);
-
     var meta = document.createElement("div");
     meta.className = "meta";
     meta.textContent = "对客 $" + p.client.toLocaleString() + " | 利润 $" + p.profit.toLocaleString();
     card.appendChild(meta);
-
     var more = document.createElement("div");
     more.className = "meta";
     more.style.marginTop = "4px";
     more.style.color = "#4e79a7";
     more.textContent = "点击进入 →";
     card.appendChild(more);
-
     container.appendChild(card);
   });
 })();
