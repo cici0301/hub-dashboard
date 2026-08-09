@@ -19,10 +19,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 .c6 { border-left-color:#b07aa1; } .c6 .v { color:#b07aa1; }
 .kpi-card .l { font-size:11px; color:#888; margin-bottom:4px; }
 .kpi-card .v { font-size:24px; font-weight:700; }
-.projects { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:20px; }
+.projects { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
 .pcard { background:#fff; border-radius:8px; padding:16px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.05); cursor:pointer; transition:all .2s; text-decoration:none; color:inherit; display:block; }
 .pcard:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.1); }
-.pcard.p1 { border-top:3px solid #4e79a7; } .pcard.p2 { border-top:3px solid #59a14f; } .pcard.p3 { border-top:3px solid #b07aa1; } .pcard.p4 { border-top:3px solid #e15759; } .pcard.p5 { border-top:3px solid #76b7b2; }
+.pcard.p1 { border-top:3px solid #4e79a7; } .pcard.p2 { border-top:3px solid #59a14f; } .pcard.p3 { border-top:3px solid #b07aa1; } .pcard.p4 { border-top:3px solid #e15759; } .pcard.p5 { border-top:3px solid #76b7b2; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; }
 .pcard h3 { font-size:15px; margin-bottom:8px; }
 .pcard .num { font-size:18px; font-weight:700; color:#1a1a2e; }
 .pcard .meta { font-size:11px; color:#999; margin-top:4px; }
@@ -55,19 +55,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 <div class="kpi-card c5"><div class="l">累计利润率</div><div class="v" id="k4">-</div></div>
 <div class="kpi-card c6"><div class="l">已发布金额</div><div class="v" id="k5">-</div></div>
 </div>
-<div class="donut-section">
-<div class="donut-wrap">
-<div class="donut-title">🍰 利润构成</div>
-<div class="donut" style="background:conic-gradient(#4e79a7 0.0deg 208.1deg,#59a14f 208.1deg 270.6deg,#b07aa1 270.6deg 342.0deg,#e15759 342.0deg 347.7deg,#76b7b2 347.7deg 360.0deg)"><div class="donut-center"><div class="big">$37,275</div><div class="small">总利润</div></div></div>
-</div>
-<div class="legend-list"><div class="li"><div class="ld" style="background:#4e79a7"></div><span class="ln">PolyBuzz</span><span class="lv">$21,547 (58%)</span></div><div class="li"><div class="ld" style="background:#59a14f"></div><span class="ln">Gauth 北美</span><span class="lv">$6,470 (17%)</span></div><div class="li"><div class="ld" style="background:#b07aa1"></div><span class="ln">Xteink 美国</span><span class="lv">$7,391 (20%)</span></div><div class="li"><div class="ld" style="background:#e15759"></div><span class="ln">老铺黄金</span><span class="lv">$597 (2%)</span></div><div class="li"><div class="ld" style="background:#76b7b2"></div><span class="ln">海信投影仪</span><span class="lv">$1,270 (3%)</span></div></div>
-</div>
+<div class="donut-section"><div class="donut-wrap"><div class="donut-title">🍰 利润构成</div><div class="donut" style="background:conic-gradient(#4e79a7 0.0deg 166.6deg,#59a14f 166.6deg 219.0deg,#b07aa1 219.0deg 315.1deg,#e15759 315.1deg 344.2deg,#76b7b2 344.2deg 344.2deg,#f28e2b 344.2deg 349.3deg,#edc948 349.3deg 360.0deg)"><div class="donut-center"><div class="big">$42,565</div><div class="small">总利润</div></div></div></div><div class="legend-list"><div class="li"><div class="ld" style="background:#4e79a7"></div><span class="ln">PolyBuzz</span><span class="lv">$19,701 (46%)</span></div><div class="li"><div class="ld" style="background:#59a14f"></div><span class="ln">Gauth</span><span class="lv">$6,189 (15%)</span></div><div class="li"><div class="ld" style="background:#b07aa1"></div><span class="ln">Xteink</span><span class="lv">$11,368 (27%)</span></div><div class="li"><div class="ld" style="background:#e15759"></div><span class="ln">Stacees</span><span class="lv">$3,440 (8%)</span></div><div class="li"><div class="ld" style="background:#76b7b2"></div><span class="ln">TEMU</span><span class="lv">$0 (0%)</span></div><div class="li"><div class="ld" style="background:#f28e2b"></div><span class="ln">老铺黄金</span><span class="lv">$597 (1%)</span></div><div class="li"><div class="ld" style="background:#edc948"></div><span class="ln">海信投影仪</span><span class="lv">$1,270 (3%)</span></div></div></div>
 <div class="projects" id="projects"></div>
 <div class="ft">更新时间: <span id="ut"></span></div>
 </div>
 
 <script>
-var D = {"total":{"submitted":693,"confirmed":82,"client":132750,"profit":39760,"published":61800,"profitRate":30},"projects":[{"name":"PolyBuzz","submitted":280,"confirmed":48,"client":68400,"profit":20536,"published":56500,"url":"https://cici0301.github.io/polybuzz-dashboard/"},{"name":"Gauth 北美","submitted":120,"confirmed":15,"client":24200,"profit":7589,"published":null,"url":"https://cici0301.github.io/gauth-dashboard/"},{"name":"Xteink 美国","submitted":179,"confirmed":17,"client":34850,"profit":9768,"published":null,"url":"https://cici0301.github.io/xteink-dashboard/"},{"name":"老铺黄金","submitted":101,"confirmed":1,"client":3800,"profit":597,"published":3800,"url":"https://thothstars.feishu.cn/wiki/MKCmw8zqhi1S17kht6ccCTWUnZd?sheet=Pb8IEI"},{"name":"海信投影仪","submitted":13,"confirmed":1,"client":1500,"profit":1270,"published":1500,"url":"https://cici0301.github.io/hisense-dashboard/"}]};
+var D = {"total":{"submitted":792,"confirmed":94,"client":147850,"profit":42565,"published":61800,"profitRate":29},"projects":[{"name":"PolyBuzz","submitted":280,"confirmed":47,"client":67700,"profit":19701,"published":56500,"url":"https://cici0301.github.io/polybuzz-dashboard/"},{"name":"Gauth","submitted":120,"confirmed":13,"client":19400,"profit":6189,"published":null,"url":"https://cici0301.github.io/gauth-dashboard/"},{"name":"Xteink","submitted":181,"confirmed":24,"client":43650,"profit":11368,"published":null,"url":"https://cici0301.github.io/xteink-dashboard/"},{"name":"Stacees","submitted":82,"confirmed":8,"client":11800,"profit":3440,"published":null,"url":"https://cici0301.github.io/stacees-dashboard/"},{"name":"TEMU","submitted":15,"confirmed":0,"client":0,"profit":0,"published":null,"url":"https://cici0301.github.io/temu-dashboard/"},{"name":"老铺黄金","submitted":101,"confirmed":1,"client":3800,"profit":597,"published":3800,"url":"https://thothstars.feishu.cn/wiki/MKCmw8zqhi1S17kht6ccCTWUnZd?sheet=Pb8IEI"},{"name":"海信投影仪","submitted":13,"confirmed":1,"client":1500,"profit":1270,"published":1500,"url":"https://cici0301.github.io/hisense-dashboard/"}]};
 
 document.getElementById("k0").textContent = D.total.submitted;
 document.getElementById("k1").textContent = D.total.confirmed;
