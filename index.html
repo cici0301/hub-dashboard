@@ -22,7 +22,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 .projects { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
 .pcard { background:#fff; border-radius:8px; padding:16px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.05); cursor:pointer; transition:all .2s; text-decoration:none; color:inherit; display:block; }
 .pcard:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.1); }
-.pcard.p1 { border-top:3px solid #4e79a7; } .pcard.p2 { border-top:3px solid #59a14f; } .pcard.p3 { border-top:3px solid #b07aa1; } .pcard.p4 { border-top:3px solid #e15759; } .pcard.p5 { border-top:3px solid #76b7b2; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; }
+.pcard.p1 { border-top:3px solid #4e79a7; } .pcard.p2 { border-top:3px solid #59a14f; } .pcard.p3 { border-top:3px solid #b07aa1; } .pcard.p4 { border-top:3px solid #e15759; } .pcard.p5 { border-top:3px solid #76b7b2; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; } .pcard.p6 { border-top:3px solid #f28e2b; } .pcard.p7 { border-top:3px solid #edc948; }
 .pcard h3 { font-size:15px; margin-bottom:8px; }
 .pcard .num { font-size:18px; font-weight:700; color:#1a1a2e; }
 .pcard .meta { font-size:11px; color:#999; margin-top:4px; }
@@ -61,7 +61,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif
 </div>
 
 <script>
-var D = {"total":{"submitted":734,"confirmed":117,"client":175450,"profit":51800,"published":68200,"profitRate":30},"projects":[{"name":"PolyBuzz","submitted":280,"confirmed":49,"client":69050,"profit":20194,"published":61200,"url":"https://cici0301.github.io/polybuzz-dashboard/"},{"name":"Gauth","submitted":27,"confirmed":27,"client":29350,"profit":10750,"published":1700,"url":"https://cici0301.github.io/gauth-dashboard/"},{"name":"Xteink","submitted":191,"confirmed":23,"client":42850,"profit":11119,"published":null,"url":"https://cici0301.github.io/xteink-dashboard/"},{"name":"Stacees","submitted":93,"confirmed":16,"client":28900,"profit":7870,"published":null,"url":"https://cici0301.github.io/stacees-dashboard/"},{"name":"TEMU","submitted":15,"confirmed":0,"client":0,"profit":0,"published":null,"url":"https://cici0301.github.io/temu-dashboard/"},{"name":"老铺黄金","submitted":115,"confirmed":1,"client":3800,"profit":597,"published":3800,"url":"https://thothstars.feishu.cn/wiki/MKCmw8zqhi1S17kht6ccCTWUnZd?sheet=Pb8IEI"},{"name":"海信投影仪","submitted":13,"confirmed":1,"client":1500,"profit":1270,"published":1500,"url":"https://cici0301.github.io/hisense-dashboard/"}]};
+var D = {"total":{"submitted":707,"confirmed":117,"client":175450,"profit":51800,"published":68200,"profitRate":30},"projects":[{"name":"PolyBuzz","submitted":280,"confirmed":49,"executionOnly":false,"client":69050,"profit":20194,"published":61200,"url":"https://cici0301.github.io/polybuzz-dashboard/"},{"name":"Gauth","submitted":0,"confirmed":27,"executionOnly":true,"client":29350,"profit":10750,"published":1700,"url":"https://cici0301.github.io/gauth-dashboard/"},{"name":"Xteink","submitted":191,"confirmed":23,"executionOnly":false,"client":42850,"profit":11119,"published":null,"url":"https://cici0301.github.io/xteink-dashboard/"},{"name":"Stacees","submitted":93,"confirmed":16,"executionOnly":false,"client":28900,"profit":7870,"published":null,"url":"https://cici0301.github.io/stacees-dashboard/"},{"name":"TEMU","submitted":15,"confirmed":0,"executionOnly":false,"client":0,"profit":0,"published":null,"url":"https://cici0301.github.io/temu-dashboard/"},{"name":"老铺黄金","submitted":115,"confirmed":1,"executionOnly":false,"client":3800,"profit":597,"published":3800,"url":"https://thothstars.feishu.cn/wiki/MKCmw8zqhi1S17kht6ccCTWUnZd?sheet=Pb8IEI"},{"name":"海信投影仪","submitted":13,"confirmed":1,"executionOnly":false,"client":1500,"profit":1270,"published":1500,"url":"https://cici0301.github.io/hisense-dashboard/"}]};
 
 document.getElementById("k0").textContent = D.total.submitted;
 document.getElementById("k1").textContent = D.total.confirmed;
@@ -82,7 +82,7 @@ document.getElementById("k5").textContent = "$" + D.total.published.toLocaleStri
     card.appendChild(title);
     var num = document.createElement("div");
     num.className = "num";
-    num.textContent = p.confirmed + " 确认 / " + p.submitted + " 提报";
+    num.textContent = p.executionOnly ? p.confirmed + " 合作" : p.confirmed + " 确认 / " + p.submitted + " 提报";
     card.appendChild(num);
     var meta = document.createElement("div");
     meta.className = "meta";
